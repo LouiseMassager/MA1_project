@@ -1,0 +1,3 @@
+<launch>
+	<node pkg="ma1_project" type="main.py" name="main" output="screen"></node>
+</launch>
