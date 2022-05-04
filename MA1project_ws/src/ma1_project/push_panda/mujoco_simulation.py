@@ -13,40 +13,24 @@ class MujocoSimulation(Simulation):
 	def __init__(
 		self,
 		panda: MujocoRobot = MujocoRobot(os.getcwd()+"/robot_model/model_mujoco/franka_panda.xml",True,''),
-		timeposarray: np.array =[],
-		box_size:float=0.04,
-		box_position:np.array=np.array([0.4, 0.1, 0.04/2]),
-		box_objective_position:np.array=np.array([0.7, 0.1, 0.04/2]),
-		ee_objective_direction:np.array=np.array([1.0,0.0,0.0,0.0]),
-		text_file_name:str="data_mujoco.txt",
+
 	) -> None:
 		
 		self.panda=panda
-		self.timeposarray=timeposarray
-
-		self.box_position=box_position
-		self.box_objective_position=box_objective_position
-		self.ee_objective_direction=ee_objective_direction
-		self.box_size=box_size
-		self.ee_thickness=0.01
-		self.ee_frontbox_position=box_position-np.array([box_size/2 + self.ee_thickness,0.0,0.0])
-		self.ee_objective_position=box_objective_position-np.array([box_size/2 + self.ee_thickness,0.0,0.0])
 		
-		self.text_file_name=text_file_name #to save data
-		
-#		self.create_scene()
-#		self.panda.reset()
-#		self.view_type("aesthetic")
-
-	def save_info(self,f)-> None:
-		print("to complete")
         
 
 	def display_info(self)-> None:
-		print(str(self.panda.ee_velocity()))
-		print("to complete")
+	"""Display in the terminal multiple info: ee velocity and pose, joints positions and velocities
+	"""
+		print("ee velocity : "+str(self.panda.ee_velocity()))
+		print("ee position and orientation : "+str(self.panda.ee_pose()))
+		print("joints velocities :"+str(self.panda.joint_velocities()))
+		print("joints position :"+str(self.panda.joint_positions()))
 
 	def random_mvt(self)-> None:
+	"""Apply a random movement to verify that the robot can be simulated. Only gravity is at work, no commands is sent to the actuators.
+	"""
 		self.panda.step()
 		self.panda.render()
 
@@ -60,36 +44,35 @@ class MujocoSimulation(Simulation):
 			if t > 15 or os.getenv('TESTING') is not None:   #stop the simulation after 15*500 steps ~15s
 	    			break
 		time.sleep(10)
-		
-	def set_robot_position(self, objective_position: np.array, objective_direction: np.array):
-		print("to complete")
-        
 
-	def go_in_front_of_box(self)-> None:
-		print("to complete")
-        
-        
-	def push_box(self)-> None:
-		print("to complete")
-               
-	def throw_box(self)-> None:
-		print("to complete")
 		
 	def redo_simulation_from_saved_data(self,saveddatafile:str,period:float=None):
 		f= open("datafiles/"+saveddatafile,'r')
-		a=0
 		while f.readline().strip()=="_":
-			a=a+1
 			start=time.process_time()
 			for joint_i in [0,1,2,3,4,5,6,7,8]:
 				self.panda.hard_set_joint_positions([float(f.readline().strip())], [joint_i])
 			delay=time.process_time()-start
-		#	print("delay:"+str(delay))
 			if delay<period/2:
 				self.panda.render()
 			time.sleep(period-float(delay))
 			self.panda.step()
 			self.panda.render()
-		print("aaaaaaa"+str(a))
 		f.close()
+        
+        
+	def save_info(self,f)-> None:
+        	pass
+        	
+    	def set_robot_position(self, objective_position: np.array, objective_direction: np.array):
+        	pass
+        	
+    	def go_in_front_of_box(self)-> None:
+        	pass
+        
+    	def push_box(self)-> None:
+        	pass
+               
+	def throw_box(self)-> None:
+        	pass
         

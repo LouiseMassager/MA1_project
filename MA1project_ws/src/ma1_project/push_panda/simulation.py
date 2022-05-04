@@ -15,9 +15,6 @@ class Simulation(ABC):
     """Abstract class for Pybullet and MuJoCo simulations
     """
 
-#    def __init__() -> None:
-        #none
-
     @abstractmethod
     def save_info(self,f)-> None:
         """Save info in text file f

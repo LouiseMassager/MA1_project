@@ -1,36 +1,29 @@
 from mujoco_simulation import MujocoSimulation
 
-import time
-import os
+import rospy
+import os,sys,time
 import numpy as np
 
 sim=MujocoSimulation()
 panda=sim.panda
 
-for i in range(1000):
+#inputs : datafile to get joints angles and period at which should send commands
+datafile = str(sys.argv[1])
+period = float(sys.argv[2])
+
+#wait a bit before start of simulation
+for i in range(1000):	
 	panda.step()
 	panda.render()
+	
+#display information on terminal
+sim.display_info()	
 
-sim.display_info()
+#do the simulation based on the joints angles in datafile
+sim.redo_simulation_from_saved_data(datafile,period)
 
-#time.sleep(10)
-
-#sim.random_mvt()
-
-
-values=[0.6]
-indices=[3]
-print(np.asarray(values))
-panda.hard_set_joint_positions(values, indices)
-
-#for i in range(3000):
-#	panda.hard_set_joint_positions([float(i/3000),float(i/3000),float(i/3000)], [0,1,2])
-#	panda.step()
-#	panda.render()
-
-sim.redo_simulation_from_saved_data('jointsangles.txt',0.01)
-
-while True:
+#don't stop simulation until break it (CTRL+C)
+while not rospy.is_shutdown():
 	panda.step()
 	panda.render()
 
