@@ -9,7 +9,6 @@ This file has been adapted from Gaoyan Liu works (https://github.com/Gaoyuan-Liu
 ## Features
 
 In order to run this project, multiple prerequisites are needed:
-- mujoco-py package from MuJoCo
 - python3
 - ROS Noetic
 - sudo apt-get install ros-noetic-ros-control ros-noetic-ros-controllers
