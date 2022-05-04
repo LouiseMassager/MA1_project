@@ -1,3 +1,6 @@
 <launch>
-	<node pkg="ma1_project" type="main.py" name="main" output="screen"></node>
+  <arg name="datafile" default="jointsangles.txt"/>
+  <arg name="period" default="0.01"/>
+  <arg name="rosuse" default="rosuse"/>
+	<node pkg="ma1_project" type="main.py" name="main" args="$(arg rosuse) $(arg datafile) $(arg period)" output="screen"></node>
 </launch>
