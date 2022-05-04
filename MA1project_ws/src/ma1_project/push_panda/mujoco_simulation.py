@@ -21,16 +21,16 @@ class MujocoSimulation(Simulation):
         
 
 	def display_info(self)-> None:
-	"""Display in the terminal multiple info: ee velocity and pose, joints positions and velocities
-	"""
+		"""Display in the terminal multiple info: ee velocity and pose, joints positions and velocities
+		"""
 		print("ee velocity : "+str(self.panda.ee_velocity()))
 		print("ee position and orientation : "+str(self.panda.ee_pose()))
 		print("joints velocities :"+str(self.panda.joint_velocities()))
 		print("joints position :"+str(self.panda.joint_positions()))
 
 	def random_mvt(self)-> None:
-	"""Apply a random movement to verify that the robot can be simulated. Only gravity is at work, no commands is sent to the actuators.
-	"""
+		"""Apply a random movement to verify that the robot can be simulated. Only gravity is at work, no commands is sent to the actuators.
+		"""
 		self.panda.step()
 		self.panda.render()
 
@@ -64,13 +64,13 @@ class MujocoSimulation(Simulation):
 	def save_info(self,f)-> None:
         	pass
         	
-    	def set_robot_position(self, objective_position: np.array, objective_direction: np.array):
+	def set_robot_position(self, objective_position: np.array, objective_direction: np.array):
         	pass
         	
-    	def go_in_front_of_box(self)-> None:
+	def go_in_front_of_box(self)-> None:
         	pass
         
-    	def push_box(self)-> None:
+	def push_box(self)-> None:
         	pass
                
 	def throw_box(self)-> None:

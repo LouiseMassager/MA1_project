@@ -8,9 +8,7 @@ import time,os
 
 import rospy
 
-
-class PybulletSimulation(Simulation):
-    """Simulation in Pybullet.
+"""Simulation in Pybullet.
 
     Args:
         sim (PH, optionnal): Simulation instance.
@@ -19,7 +17,8 @@ class PybulletSimulation(Simulation):
         box_objective_position (np.ndarray, optionnal): Reference position of the box to be pushed.
         ee_objective_position (np.ndarray, optionnal): End-effector reference orientation.
         folderpath (str,optionnal): Path of the push_panda folder. To be specified for ROS.
-    """
+"""
+class PybulletSimulation(Simulation):
 	def __init__(
 		self,
 		sim: PH = PH(render=True),
@@ -54,10 +53,10 @@ class PybulletSimulation(Simulation):
 		self.publisher=pub
 	
 	def view_type(self,settings:str) -> None:
-	        """Set the camera pose to ether an aesthetic view or a view closer to the box
-	        Args:
-	            settings (str): "aestetic" or "push"
-	        """
+		"""Set the camera pose to ether an aesthetic view or a view closer to the box
+        	Args:
+	     		settings (str): "aestetic" or "push"
+		"""
 		if (settings=="aesthetic"):
 			self.sim.place_visualizer(self.box_position, 0.9, 50.0, -25.0) #aesthetic view
 		elif(settings=="push"):
@@ -179,8 +178,8 @@ class PybulletSimulation(Simulation):
 		initialpos=pos
 		i=1
 		if datafile is not None:
-			f= open(self.folderpath+"datafiles/"+datafile,'w+')
-		while np.linalg.norm(self.panda.get_ee_position()-(self.ee_objective_position))>(step+0.0001) : 
+			f= open(self.folderpath+"/datafiles/"+datafile,'w+')
+		while np.linalg.norm(self.panda.get_ee_position()-(self.ee_objective_position))>(step/2+0.0001) : 
 			i+=1
 			self.set_robot_position(initialpos+i*np.array([step,0,0]),self.ee_objective_direction)
 			if datafile is not None:
@@ -194,7 +193,7 @@ class PybulletSimulation(Simulation):
 	            datafile (str): name of the text file where to store the joints angles.
 	            period (float): period at which send the joints angles saved.
 	        """
-		f= open(self.folderpath+"datafiles/"+datafile,'r')
+		f= open(self.folderpath+"/datafiles/"+datafile,'r')
 		while f.readline().strip()=="_":
 			start=time.process_time()
 			for joint_i in self.panda.joint_indices:
@@ -219,7 +218,7 @@ class PybulletSimulation(Simulation):
 		self.view_type("push")
 		self.go_in_front_of_box()
 		if datafile is not None:
-			f= open(self.folderpath+"datafiles/"+datafile,'w+')
+			f= open(self.folderpath+"/datafiles/"+datafile,'w+')
 		pos=self.panda.get_ee_position()
 		tic=time.time()
 		
@@ -262,7 +261,7 @@ class PybulletSimulation(Simulation):
 #		self.go_in_front_of_box()
 #		pos = self.panda.get_ee_position()
 #		initialpos=pos
-#		f= open("datafiles/"+self.text_file_name,'w')
+#		f= open("/datafiles/"+self.text_file_name,'w')
 #		while np.linalg.norm(pos-(self.ee_objective_position))>0.002 :
 #			print("la: "+str(np.linalg.norm(pos-(self.ee_objective_position))))
 #		for i in range(1000):

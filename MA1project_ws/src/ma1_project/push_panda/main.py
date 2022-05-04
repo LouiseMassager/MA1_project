@@ -36,9 +36,9 @@ def printr(string:str):
 	print(Style.RESET_ALL)
 
 
-
+        
 def get_folderpath(typeoftest:str="launched with python3") -> str:
-        """Get the path of the push_panda folder
+	"""Get the path of the push_panda folder
         Args:
             typeoftest (str): "rosuse" if launched by ROS
         Returns:
@@ -207,10 +207,9 @@ if __name__ == '__main__':
 			datafile=check_datafile("read",datafile)
 		push_offline_test(datafile,period)
 		printg("should have pushed red box in green box position at fixed speed!")
-	elif typeoftest!="rosuse" :
+	elif typeoftest!="rosuse":
 		printr("incorrect entry, please choose an entry between:\n'basic' \n'throw'\n'push_offline' 'datafile_name.txt' period\n'push_online' 'datafile_name.txt' <step>\n'push_constant_speed' 'datafile_name.txt' speed <period>\n")
-		
-	'''run with roslaunch command:'''
+		'''run with roslaunch command:'''
 	else: 	
 		datafile = str(sys.argv[2])
 		period = float(sys.argv[3])

@@ -36,7 +36,7 @@ class Panda(Robot):
         super().__init__(
             sim,
             body_name="panda",
-            file_name=folderpath+"robot_model/model_pybullet/panda.urdf",
+            file_name=folderpath+"/robot_model/model_pybullet/panda.urdf",
             base_position=base_position,
             action_space=action_space,
             joint_indices=np.array([0, 1, 2, 3, 4, 5, 6, 9, 10]),
