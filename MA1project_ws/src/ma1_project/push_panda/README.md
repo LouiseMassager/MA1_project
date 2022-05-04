@@ -31,6 +31,8 @@ Specific at Mujoco simulation:
 To deploy a simulation of the panda robotic arm multiple files
 can be run in a terminal.
 
+- Pybullet simulation:
+
 To start a demonstration of the simulation with Pybullet, run:
 ```bash
   python3 main.py "basic"
@@ -59,6 +61,8 @@ To redo the push simulation with Pybullet based on saved results on the text fil
 ```bash
   python3 main.py "push_offline" "text_file_name.txt" p
 ```
+
+- MuJoCo simulation:
 
 To redo the push simulation with MuJoCo based on saved results on the text file "text_file_name.txt" with a period of p seconds, run:
 ```bash
