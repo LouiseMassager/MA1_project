@@ -7,7 +7,7 @@ The Pybullet simulation must first be ran to compute the command for the simulat
 
 Many of the code comes from other works:
 - Pybullet simulation is based on pandagym (https://github.com/qgallouedec/panda-gym)
-- Gazebo simulation is based on Gaoyuan Liu works ()
+- Gazebo simulation is based on Gaoyuan Liu works (https://github.com/Gaoyuan-Liu/MoveRL))
 - MuJoco simulation is based on Saif Sidhik and Baris Yazici works (https://github.com/justagist/mujoco_panda)
 
  The goal is to test the performances of Pybullet 
