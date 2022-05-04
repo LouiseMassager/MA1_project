@@ -39,13 +39,13 @@ can be run in a terminal. First ros must be deployed in a terminal:
 ```
 
 Then open a second terminal.
--To start the push simulation with Pybullet without ROS, run:
+- To start the push simulation with Pybullet without ROS, run:
 ```bash
   cd MA1project_ws
   cd MA1project_ws/src/ma1_project/push_panda
   python3 main.py *args
 ```
--To start publishing the joints angles from the datafile data at period p on the topic 'chatter' ROS, run:
+- To start publishing the joints angles from the datafile data at period p on the topic 'chatter' ROS, run:
 ```bash
   cd MA1project_ws
   catkin_make
