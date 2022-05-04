@@ -8,16 +8,12 @@ newpanda is an adaptation of pandagym to
  The goal is to test the performances of Pybullet 
  compared to Gazebo as a physics engine for reinforcement learning 
  applications in robotics.
- 
- (! project still in progress !)
-
 
 ## Features
 
 In order to run this project, multiple prerequisites are needed:
 - mujoco-py package from MuJoCo
 - python3
-- gym package from OpenAI
 - ROS Noetic
 
 Specific at Mujoco simulation:
@@ -31,36 +27,30 @@ can be run in a terminal.
 
 To start a demonstration of the simulation with Pybullet, run:
 ```bash
-  cd push_panda
   python3 main.py "basic"
 ```
 
 To start the throw simulation with Pybullet, run:
 ```bash
-  cd push_panda
   python3 main.py "throw"
 ```
 
 To start the push simulation with Pybullet, run:
 ```bash
-  cd push_panda
   python3 main.py "push_online"
 ```
 To start the push simulation with Pybullet at fixed speed, run:
 ```bash
-  cd push_panda
   python3 main.py "push_constant_speed"
 ```
 
 To start the push simulation with Pybullet and record the joint angles on a text file "text_file_name.txt", run:
 ```bash
-  cd push_panda
   python3 main.py "push_online" "text_file_name.txt"
 ```
 
 To redo the push simulation with Pybullet based on saved results on the text file "text_file_name.txt" with a period of p seconds, run:
 ```bash
-  cd push_panda
   python3 main.py "push_offline" "text_file_name.txt" p
 ```
 
