@@ -5,9 +5,15 @@ newpanda is an adaptation of pandagym to
  and extract time and end-effector position data 
  from it. Contrary to pandagym, it doens't use OpenAI/gym 
  robotic environments but only rely on PyBullet physics engine.
+ 
+ A Mujoco push simulation has also been establish by adapting Saif Sidhik and 
+Baris Yazici works (https://github.com/justagist/mujoco_panda) in order to realise a push simulation from pre-existing commands stored in a text file in the datafile folder.
+ 
  The goal is to test the performances of Pybullet 
- compared to Gazebo as a physics engine for reinforcement learning 
+ and MuJoCo as a physics engine for reinforcement learning 
  applications in robotics.
+ 
+ 
 
 ## Features
 
@@ -67,7 +73,7 @@ To start a demonstration of the simulation with MuJoCo, run:
 
 ## Author
 
-- [@LouiseMassager](https://github.com/LouiseMassager/MA1project_ROSMuJoCo/tree/main/new_panda)
+- [@LouiseMassager](https://github.com/LouiseMassager)
 
 
 
