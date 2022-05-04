@@ -33,28 +33,52 @@ Specific at Gazebo simulation:
 ## Deployment
 
 To deploy a simulation of the panda robotic arm multiple files
-can be run in a terminal.
-
-To start the push simulation with Pybullet, run:
+can be run in a terminal. First ros must be deployed in a terminal:
 ```bash
-  TO CHANGE
+ roscore
 ```
 
-To start the push simulation with with MuJoCo, run:
+Then open a second terminal.
+-To start the push simulation with Pybullet without ROS, run:
 ```bash
-  TO CHANGE
+  cd MA1project_ws
+  cd MA1project_ws/src/ma1_project/push_panda
+  python3 main.py *args
 ```
-
-To start the push simulation with Gazebo, run:
+-To start publishing the joints angles from the datafile data at period p on the topic 'chatter' ROS, run:
 ```bash
-  TO CHANGE
+  cd MA1project_ws
+  catkin_make
+  source devel/setup.bash
+  roslaunch ma1_project main.py datafile:=data period:=p
 ```
+data must be the name of the file in the datafiles folder (eg. "jointsangles.txt") while p must be a period high enough for your computer performances (eg. 0.01).
 
+- To start the push simulation with MuJoCo with the text file named datafile (str) at a period (float) p, run:
+```bash
+  cd MA1project_ws/src/ma1_project/push_panda
+  python3 mujoco_demo datafile datafile:=data period:=p
+```
+datafile must be the name of the file in the datafiles folder (eg. "jointsangles.txt") while p must be a period high enough for your computer performances (eg. 0.01).
+
+- To start the push simulation with Gazebo, run:
+```bash
+  cd MoveRL
+  catkin_make
+  source devel/setup.base
+  roslaunch rl_interface main.launch
+```
+Open a third terminal in order to command the robot in the Gazebo window.
+To start the push simulation with the text file named datafile (str) at a period (float) p:
+```bash
+  cd MoveRL
+  roslaunch ma1_project pushpanda.launch datafile p
+```
+datafile must be the name of the file in the datafiles folder (eg. "jointsangles.txt") while p must be a period high enough for your computer performances (eg. 0.01).
 
 ## Author
 
 - [@LouiseMassager](https://github.com/LouiseMassager)
-
 
 
 ## Acknowledgements
