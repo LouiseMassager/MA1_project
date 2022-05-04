@@ -54,12 +54,12 @@ There are multiple possibilities for *args. To see the possibilities put anythin
   source devel/setup.bash
   roslaunch ma1_project main.py datafile:=data period:=p
 ```
-data must be the name of the file in the datafiles folder (eg. "jointsangles.txt") while p must be a period high enough for your computer performances (eg. 0.01).
+data must be the name of the file in the datafiles folder (eg. "jointsangles.txt") while p must be a period high enough for your computer performances (eg. "0.01").
 
 - To start the push simulation with MuJoCo with the text file named datafile (str) at a period (float) p, run:
 ```bash
   cd MA1project_ws/src/ma1_project/push_panda
-  python3 mujoco_demo datafile datafile:=data period:=p
+  python3 mujoco_demo datafile datafile period
 ```
 datafile must be the name of the file in the datafiles folder (eg. "jointsangles.txt") while p must be a period high enough for your computer performances (eg. 0.01).
 
@@ -71,12 +71,12 @@ datafile must be the name of the file in the datafiles folder (eg. "jointsangles
   roslaunch rl_interface main.launch
 ```
 Open a third terminal in order to command the robot in the Gazebo window.
-To start the push simulation with the text file named datafile (str) at a period (float) p:
+To start the push simulation with the text file named data (str) at a period (float) p:
 ```bash
   cd MoveRL
-  roslaunch ma1_project pushpanda.launch datafile p
+  roslaunch ma1_project pushpanda.launch datafile:=data period:=p
 ```
-datafile must be the name of the file in the datafiles folder (eg. "jointsangles.txt") while p must be a period high enough for your computer performances (eg. 0.01).
+datafile must be the name of the file in the datafiles folder (eg. "jointsangles.txt") while p must be a period high enough for your computer performances (eg. "0.01").
 
 ## Author
 
