@@ -71,8 +71,8 @@ To start a demonstration of the simulation with MuJoCo, run:
 
 ## Screenshots
 
-<img src="pybullet_demo.png" width=1000>
-<img src="mujoco_demo.png" width=1000>
+<img src="simulation_pictures/pybullet_demo.png" width=1000>
+<img src="simulation_pictures/mujoco_demo.png" width=1000>
 
 
 ## Author
