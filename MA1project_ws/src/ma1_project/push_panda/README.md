@@ -1,4 +1,4 @@
-# push_panda :robot:
+# push_panda 🦾
 
 newpanda is an adaptation of pandagym to
  control the robotic arm franka panda for a push simulation 
