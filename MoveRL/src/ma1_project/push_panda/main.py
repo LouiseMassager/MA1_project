@@ -70,4 +70,7 @@ def get_folderpath() -> str:
 if __name__ == '__main__':
 	rospy.init_node('main', anonymous=True)
 	folderpath=get_folderpath()
-	publish_offline("jointsangles_s0.01.txt",0.001)
+	#inputs : datafile to get joints angles and period at which should send commands
+	datafile = str(sys.argv[1])
+	period = float(sys.argv[2])
+	publish_offline(datafile,period)
