@@ -6,9 +6,9 @@ All files are launched with ROS and Python3 is the main programming language for
 The Pybullet simulation must first be ran to compute the command for the simulation in Gazebo and MuJoCo (by storing the joints coordinates in the data file).
 
 Many of the code comes from other works:
-Pybullet simulation is based on pandagym (https://github.com/qgallouedec/panda-gym)
-Gazebo simulation is based on Gaoyuan Liu works ()
-MuJoco simulation is based on Saif Sidhik and Baris Yazici works (https://github.com/justagist/mujoco_panda)
+- Pybullet simulation is based on pandagym (https://github.com/qgallouedec/panda-gym)
+- Gazebo simulation is based on Gaoyuan Liu works ()
+- MuJoco simulation is based on Saif Sidhik and Baris Yazici works (https://github.com/justagist/mujoco_panda)
 
  The goal is to test the performances of Pybullet 
  and MuJoCo as a physics engine for reinforcement learning 
