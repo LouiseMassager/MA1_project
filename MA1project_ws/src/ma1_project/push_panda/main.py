@@ -40,11 +40,11 @@ def printr(string:str):
 def get_folderpath(typeoftest:str="launched with python3") -> str:
         """Get the path of the push_panda folder
         Args:
-            typeoftest (str): "__name:=main" if launched by ROS
+            typeoftest (str): "rosuse" if launched by ROS
         Returns:
             folderpath (str): path of the push_panda folder
         """
-	if typeoftest == "__name:=main":
+	if typeoftest == "rosuse":
 		ros_root = rospkg.get_ros_root()
 		r = rospkg.RosPack()
 		folderpath=r.get_path('ma1_project')+"/push_panda/"
@@ -141,14 +141,14 @@ def push_offline_test(datafile:str,period:float=0.007):
 	printg("should have pushed red box in green box position based on entries in file "+ datafile+"!")
 	time.sleep(10.0)
 
-def publish_offline(topic:str='chatter',datafile:str="jointsangles.txt"):
+def publish_offline(topic:str='chatter',datafile:str="jointsangles.txt",period:float=0.01):
 	"""Publish the joints angles in the ROS topic topic
 	Args:
             topic (str): ROS topic name
             datafile (str): name of the file requested in the datafiles folder
         """
 	pub=rospy.Publisher(topic,String,queue_size=10)
-	rate=rospy.Rate(10) #10Hz
+	rate=rospy.Rate(1/period)
 	f= open(folderpath+"datafiles/"+datafile,'r')
 	while not rospy.is_shutdown():
 		f= open(folderpath+"datafiles/"+datafile,'r')
@@ -207,9 +207,11 @@ if __name__ == '__main__':
 			datafile=check_datafile("read",datafile)
 		push_offline_test(datafile,period)
 		printg("should have pushed red box in green box position at fixed speed!")
-	elif typeoftest!="__name:=main" :
+	elif typeoftest!="rosuse" :
 		printr("incorrect entry, please choose an entry between:\n'basic' \n'throw'\n'push_offline' 'datafile_name.txt' period\n'push_online' 'datafile_name.txt' <step>\n'push_constant_speed' 'datafile_name.txt' speed <period>\n")
 		
 	'''run with roslaunch command:'''
 	else: 	
-		publish_offline()
+		datafile = str(sys.argv[2])
+		period = float(sys.argv[3])
+		publish_offline(datafile=datafile,period=period)
