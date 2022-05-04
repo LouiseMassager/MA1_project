@@ -3,7 +3,7 @@
 This project regroup the control of the robotic arm franka panda for a push simulation with 3 different physics engine: Pybullet, Gazebo and Mujoco.
 All files are launched with ROS and Python3 is the main programming language for the code.
 
-The Pybullet simulation must first be ran to compute the command for the simulation in Gazebo and MuJoCo (by storing the joints coordinates in the data file).
+The Pybullet simulation must first be ran to compute the command for the simulation in Gazebo and MuJoCo (by storing the joints commands in the data file).
 
 Many of the code comes from other works:
 - Pybullet simulation is based on pandagym (https://github.com/qgallouedec/panda-gym)
