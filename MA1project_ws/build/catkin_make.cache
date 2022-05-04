@@ -1,2 +1,0 @@
-ma1_project
--DCATKIN_DEVEL_PREFIX=/home/kiwix/MA1project_ws/devel -DCMAKE_INSTALL_PREFIX=/home/kiwix/MA1project_ws/install -G Unix Makefiles

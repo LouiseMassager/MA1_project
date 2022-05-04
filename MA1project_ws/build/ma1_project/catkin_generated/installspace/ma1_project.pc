@@ -1,8 +1,0 @@
-prefix=/home/kiwix/MA1project_ws/install
-
-Name: ma1_project
-Description: Description of ma1_project
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
