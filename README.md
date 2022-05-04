@@ -1,4 +1,4 @@
-# MA1_project
+# MA1_project :mechanical_arm:
 
 This project regroup the control of the robotic arm franka panda for a push simulation with 3 different physics engine: Pybullet, Gazebo and Mujoco.
 All files are launched with ROS and Python3 is the main programming language for the code.
