@@ -45,6 +45,8 @@ Then open a second terminal.
   cd MA1project_ws/src/ma1_project/push_panda
   python3 main.py *args
 ```
+There are multiple possibilities for *args. To see the possibilities put anything instead (eg. python3 main.py 'help').
+
 - To start publishing the joints angles from the datafile data at period p on the topic 'chatter' ROS, run:
 ```bash
   cd MA1project_ws
