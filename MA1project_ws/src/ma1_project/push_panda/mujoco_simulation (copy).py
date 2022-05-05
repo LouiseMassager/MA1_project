@@ -48,16 +48,13 @@ class MujocoSimulation(Simulation):
 		
 	def redo_simulation_from_saved_data(self,saveddatafile:str,period:float=None):
 		f= open("datafiles/"+saveddatafile,'r')
-		r=rospy.Rate(1/period)	#only to have a more accurate visualisation of the simulation ('on time' while not necessary for the results)
+		r=rospy.Rate(1/period)
 		start=rospy.get_time()
 		while f.readline().strip()=="_":
-			joints=[]
-			for joint_i in range(9):
-				joints.append(float(f.readline().strip()))
-			
-			for i in range(int(period/0.002)) :	#since MuJoCo set a time interval of 0.002 between each steps
-				self.panda.hard_set_joint_positions(joints, [0,1,2,3,4,5,6,7,8])
-				self.panda.step()
+			for joint_i in [0,1,2,3,4,5,6,7,8]:
+				self.panda.hard_set_joint_positions([float(f.readline().strip())], [joint_i])
+			self.panda.step()	
+			self.panda.render()
 			r.sleep()
 		f.close()
 		print('duration: '+str(rospy.get_time()-start))
@@ -69,10 +66,7 @@ class MujocoSimulation(Simulation):
         	pass
         	
 	def go_in_front_of_box(self)-> None:
-		self.panda.hard_set_joint_positions([0.22329628372887014,0.3235385023518342,0.021995274091036018,
-		-2.722718083051394,-0.07327165512698616,3.0458963065802136,
-		1.1024833840870198,-4.52722370717516e-07,1.2021413893037649e-06], [0,1,2,3,4,5,6,7,8])
-		self.panda.step(render=True)
+        	pass
         
 	def push_box(self)-> None:
         	pass

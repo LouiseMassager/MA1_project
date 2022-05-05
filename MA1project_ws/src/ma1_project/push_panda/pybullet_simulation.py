@@ -193,17 +193,18 @@ class PybulletSimulation(Simulation):
 	            datafile (str): name of the text file where to store the joints angles.
 	            period (float): period at which send the joints angles saved.
 	        """
+		self.go_in_front_of_box()
 		f= open(self.folderpath+"/datafiles/"+datafile,'r')
+		r=rospy.Rate(1/period)
+		start=rospy.get_time()
 		while f.readline().strip()=="_":
-			start=time.process_time()
 			for joint_i in self.panda.joint_indices:
 				self.sim.set_joint_angles(self.panda_name, np.array([joint_i]), np.array([float(f.readline().strip())]))
-			delay=time.process_time()-start
-			if delay<period/2:
-				self.sim.render()
-			time.sleep(period-float(delay))
-			self.sim.step()
+			self.sim.step()	
+			self.sim.render()
+			r.sleep()
 		f.close()
+		print('duration: '+str(rospy.get_time()-start))
 		
 		
 	def push_box_at_fixed_speed(self,speed:float=2,period:float=0.005,datafile:str =None):

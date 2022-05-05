@@ -8,6 +8,6 @@
     <worldbody>
         <light pos="0 0 1000" castshadow="false"/>
         <!-- <light diffuse=".5 .5 .5" pos="0 0 3" dir="0 0 -1"/> -->
-        <geom pos ="0.0 0.0 -0.02" name="ground" type="box" size="1.1 0.7 0.01" rgba=".65 .65 .65 1"/>
+        <geom pos ="0.0 0.0 0.0" name="ground" type="plane" size="1.1 0.7 0.01" rgba=".65 .65 .65 1" friction="0.5 0.0 0.0" />
     </worldbody>
 </mujoco>

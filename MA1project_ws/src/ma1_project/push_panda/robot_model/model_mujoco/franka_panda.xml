@@ -8,10 +8,18 @@
     <option cone="elliptic">
         <flag gravity="enable"/>
     </option>
-	
+    <default>
+	<default class="block_visual">
+		<geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="block_collision">
+<geom contype="1" conaffinity="1" condim="4" solimp="0.99 0.99 0.01" solref="0.01 1"/>
+</default>
+<site rgba="1 0 0 .5"/>
+</default>
     <worldbody>
         <include file="panda/arm_with_gripper.xml"/>    
-	<include file="other/box.xml"/>    
+	<include file="other/box.xml"/>
     </worldbody>
 
     <actuator>
