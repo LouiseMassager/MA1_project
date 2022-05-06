@@ -43,7 +43,7 @@ Then open a second terminal.
 ```bash
   cd MA1project_ws
   cd MA1project_ws/src/ma1_project/push_panda
-  python3 main.py *args
+  python3 main.py "push_offline" "jointsangles_s0.01.txt" 0.01
 ```
 There are multiple possibilities for *args. To see the possibilities put anything instead (eg. python3 main.py 'help').
 
