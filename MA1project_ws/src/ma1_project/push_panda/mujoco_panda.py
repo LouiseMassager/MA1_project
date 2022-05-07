@@ -50,6 +50,7 @@ class MujocoRobot(object):
             self._model = from_model
         else:
             self._model = mjp.load_model_from_path(model_path)
+        self._model.opt.timestep=0.001
 
         self._sim = mjp.MjSim(self._model)
         self._viewer = mjp.MjViewer(self._sim) if render else None
@@ -90,6 +91,10 @@ class MujocoRobot(object):
         self._post_step_callables = poststep_callables
 
         self._first_step_not_done = True
+        
+    def set_timestep(self, period:float):
+        self._model.opt.timestep=period
+        
 
     def set_as_ee(self, body_name):
         """
@@ -404,6 +409,7 @@ class MujocoRobot(object):
         """
         if rate is None:
             rate = 1.0/self._model.opt.timestep
+            
 
         def continuous_run():
             self._asynch_thread_active = True

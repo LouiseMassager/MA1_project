@@ -46,7 +46,8 @@ class MujocoSimulation(Simulation):
 		time.sleep(10)
 
 		
-	def redo_simulation_from_saved_data(self,saveddatafile:str,period:float=None):
+	def redo_simulation_from_saved_data(self,saveddatafile:str,period:float=0.001):
+		self.panda.set_timestep(period)
 		f= open("datafiles/"+saveddatafile,'r')
 		r=rospy.Rate(1/period)	#only to have a more accurate visualisation of the simulation ('on time' while not necessary for the results)
 		start=rospy.get_time()
@@ -55,12 +56,19 @@ class MujocoSimulation(Simulation):
 			for joint_i in range(9):
 				joints.append(float(f.readline().strip()))
 			
-			for i in range(int(period/0.002)) :	#since MuJoCo set a time interval of 0.002 between each steps
+			for i in range(10) :	
 				self.panda.hard_set_joint_positions(joints, [0,1,2,3,4,5,6,7,8])
 				self.panda.step()
 			r.sleep()
+#			for joint_i in [0,1,2,3,4,5,6,7,8]:
+#				self.panda.hard_set_joint_positions(float(f.readline().strip()), joint_i)
+#			self.panda.step()
+#			r.sleep()
 		f.close()
 		print('duration: '+str(rospy.get_time()-start))
+		while not rospy.is_shutdown():						#stay in position at end
+			self.panda.hard_set_joint_positions(joints, [0,1,2,3,4,5,6,7,8])
+			self.panda.step(render=True)
         
 	def save_info(self,f)-> None:
         	pass

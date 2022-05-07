@@ -44,11 +44,14 @@ class PyBulletHandler(object):
 	
         self.physics_client.setGravity(0, 0, -9.81)
         self._bodies_idx = {}
-
+        
     @property
     def dt(self):
         """Timestep."""
         return self.timestep * self.n_substeps
+    def set_timestep(self, timestep:float):
+        self.timestep = timestep
+        self.physics_client.setTimeStep(self.timestep)
 
     def step(self) -> None:
         """Step the simulation."""

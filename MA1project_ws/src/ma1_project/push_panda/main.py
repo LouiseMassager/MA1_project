@@ -68,6 +68,10 @@ def check_datafile(mode:str,datafile:str,step:float=0.001):
 			
 	if (mode=="read") and (not os.path.isfile("datafiles/"+datafile)):
 		printr("doing online simulation since no data previously existing")
+		try:
+			step=float(datafile[14:len(datafile)-4])
+		except:
+			printr("careful, will run for a step of "+str(step)+" !")
 		push_online_test(datafile,step)
 		PS.go_in_front_of_box()
 		PS.initiate_box()
@@ -116,7 +120,6 @@ def throw_test():
 	"""Launch a throw simulation of PybulletSimulation
         """
 	PS.throw_box()
-	time.sleep(5.0)
 
 def push_online_test(datafile:str,step:float=None):
 	"""Launch a push simulation and store the joints angles stored in the text file datafile
@@ -129,7 +132,7 @@ def push_online_test(datafile:str,step:float=None):
 	else:
 		PS.push_box(datafile)
 	printg("should have pushed red box in green box position !")
-	time.sleep(10.0)
+
 
 def push_offline_test(datafile:str,period:float=0.007):
 	"""Launch a push simulation based on the joints angles stored in the text file datafile
@@ -139,7 +142,7 @@ def push_offline_test(datafile:str,period:float=0.007):
         """
 	PS.redo_simulation_from_saved_data(datafile,period)
 	printg("should have pushed red box in green box position based on entries in file "+ datafile+"!")
-	time.sleep(10.0)
+
 
 def publish_offline(topic:str='chatter',datafile:str="jointsangles.txt",period:float=0.01):
 	"""Publish the joints angles in the ROS topic topic
@@ -214,3 +217,12 @@ if __name__ == '__main__':
 		datafile = str(sys.argv[2])
 		period = float(sys.argv[3])
 		publish_offline(datafile=datafile,period=period)
+		
+	for i in range(50):			#wait a bit for box to slide
+		PS.sim.step()
+		PS.sim.render()
+		
+	PS.view_type("zoompush")		#at the end zoom on target position
+	while not rospy.is_shutdown():
+		PS.sim.step()
+		PS.sim.render()

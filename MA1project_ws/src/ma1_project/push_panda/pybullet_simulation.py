@@ -27,6 +27,7 @@ class PybulletSimulation(Simulation):
 		box_objective_position:np.array=np.array([0.7, 0.1, 0.04/2]),
 		ee_objective_direction:np.array=np.array([1.0,0.0,0.0,0.0]),
 		folderpath:str=os.getcwd(),
+		lateral_friction:float=0.4,
 	) -> None:
 		
 		self.sim=sim
@@ -42,11 +43,13 @@ class PybulletSimulation(Simulation):
 		self.ee_frontbox_position=box_position-np.array([box_size/2 + self.ee_thickness,0.0,0.0])
 		self.ee_objective_position=box_objective_position-np.array([box_size/2 + self.ee_thickness,0.0,0.0])
 		
+		self.lateral_friction=lateral_friction
 		self.create_scene()
 		self.panda.reset()
 		self.view_type("aesthetic")
 		self.publisher=None
 		self.folderpath=folderpath
+		
 		
 	
 	def set_publisher(self,pub) -> None:
@@ -61,6 +64,8 @@ class PybulletSimulation(Simulation):
 			self.sim.place_visualizer(self.box_position, 0.9, 50.0, -25.0) #aesthetic view
 		elif(settings=="push"):
 			self.sim.place_visualizer(self.box_position+np.array([0.1,0.0,0.25]), 0.5, 10.0, 20.0) #aesthetic view
+		elif(settings=="zoompush"):
+			self.sim.place_visualizer(self.box_position+np.array([0.3, 0.1, 0.03]), 0.3, 0.0, 0.0) #close aesthetic view
 		else:
 			print("erroneous view_type() input")
 		
@@ -74,13 +79,14 @@ class PybulletSimulation(Simulation):
 		    ghost=False,
 		    position=self.box_position,
 		    rgba_color=np.array([209, 0, 0, 1]), #red
+		    lateral_friction=self.lateral_friction,
 		)
 		
 	def create_scene(self) -> None:
 		"""Create the initial scene: create the box, the reference for the box, the table and ground.
 	        """
 		self.sim.create_plane(z_offset=-0.4,color=np.array([0.8, 0.8, 0.8, 1.0]))
-		self.sim.create_table(length=1.1, width=0.7, height=0.4, color=np.array([0.65,0.65,0.65,1]), x_offset=+0.3)
+		self.sim.create_table(length=1.1, width=0.7, height=0.4, color=np.array([0.65,0.65,0.65,1]), x_offset=+0.3,lateral_friction=self.lateral_friction)
 		self.initiate_box()
 		self.sim.create_box(
 		    body_name="target",
@@ -119,8 +125,9 @@ class PybulletSimulation(Simulation):
 	        """
 		print("end-effector's position: "+str(self.panda.get_ee_position()))
 		for j in self.panda.joint_indices:
-			print("joint"+str(j)+" angle: "+str(self.panda.get_joint_angle(j)))
-			print("joint"+str(j)+" velocity: "+str(self.panda.get_joint_velocity(j)))
+		#	print("joint"+str(j)+" angle: "+str(self.panda.get_joint_angle(j)))
+		#	print("joint"+str(j)+" velocity: "+str(self.panda.get_joint_velocity(j)))
+			print(str(self.panda.get_joint_angle(j)))
 	
 	def publish_info(self)-> None:
 		"""Publish through the publisher the end-effector joints angles. 
@@ -193,9 +200,11 @@ class PybulletSimulation(Simulation):
 	            datafile (str): name of the text file where to store the joints angles.
 	            period (float): period at which send the joints angles saved.
 	        """
+		self.view_type("push")
 		self.go_in_front_of_box()
 		f= open(self.folderpath+"/datafiles/"+datafile,'r')
-		r=rospy.Rate(1/period)
+		self.sim.set_timestep(period)	#to fix the time between each-steps (to compute the physics)
+		r=rospy.Rate(1/period) 	#to visualy, have the simulation run in "real-time" (can be not possible for too low period depending on computation time required for 1 loop)
 		start=rospy.get_time()
 		while f.readline().strip()=="_":
 			for joint_i in self.panda.joint_indices:
