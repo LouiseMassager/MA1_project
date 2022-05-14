@@ -15,6 +15,13 @@ Baris Yazici works (https://github.com/justagist/mujoco_panda) in order to reali
  
  
 
+## Screenshots
+- PyBullet simulation:
+<img src="simulation_pictures/pybullet_demo.jpg" width=1000>
+- MuJoCo simulation:
+<img src="simulation_pictures/mujoco_demo.jpg" width=1000>
+
+
 ## Features
 
 In order to run this project, multiple prerequisites are needed:
@@ -68,13 +75,6 @@ To redo the push simulation with MuJoCo based on saved results on the text file 
 ```bash
   python3 mujoco_demo.py "text_file_name.txt" p
 ```
-
-## Screenshots
-- PyBullet simulation:
-<img src="simulation_pictures/pybullet_demo.jpg" width=1000>
-- MuJoCo simulation:
-<img src="simulation_pictures/mujoco_demo.jpg" width=1000>
-
 
 ## Author
 
