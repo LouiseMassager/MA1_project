@@ -78,6 +78,14 @@ To start the push simulation with the text file named data (str) at a period (fl
 ```
 datafile must be the name of the file in the datafiles folder (eg. "jointsangles.txt") while p must be a period high enough for your computer performances (eg. "0.01").
 
+## Screenshots
+- PyBullet simulation:
+<img src="simulation_pictures/pybullet_demo.jpg" width=1000>
+- Gazebo simulation:
+<img src="simulation_pictures/gazebo_demo.jpg" width=1000>
+- MuJoCo simulation:
+<img src="simulation_pictures/mujoco_demo.jpg" width=1000>
+
 ## Author
 
 - [@LouiseMassager](https://github.com/LouiseMassager)
