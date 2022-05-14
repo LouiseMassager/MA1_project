@@ -70,9 +70,10 @@ To redo the push simulation with MuJoCo based on saved results on the text file 
 ```
 
 ## Screenshots
-
-<img src="simulation_pictures/pybullet_demo.png" width=1000>
-<img src="simulation_pictures/mujoco_demo.png" width=1000>
+- PyBullet simulation:
+<img src="simulation_pictures/pybullet_demo.jpg" width=1000>
+- MuJoCo simulation:
+<img src="simulation_pictures/mujoco_demo.jpg" width=1000>
 
 
 ## Author
