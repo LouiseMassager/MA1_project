@@ -3,6 +3,12 @@
 
 This file has been adapted from Gaoyan Liu works (https://github.com/Gaoyuan-Liu/MoveRL) in order to realise a push simulation from pre-existing command stored in a text file. The additional work realised is in the ma1_project folder(https://github.com/LouiseMassager/MA1project/tree/main/MoveRL/src/ma1_project).
 
+
+
+## Screenshots
+- Gazebo simulation:
+<img src="simulation_pictures/gazebo_demo.jpg" width=1000>
+
 ## Deployement
 To deploy a simulation of the panda robotic arm multiple files
 can be run in a terminal. First ros must be deployed in a terminal:
